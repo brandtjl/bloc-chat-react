@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  text-align: left;
 }
 
 .App-logo {
@@ -25,4 +25,26 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.room_list {
+  width: 20%;
+  background-color:rgb(199, 193, 193);
+  background-size: cover;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 1px;
+  margin-bottom: 10px;
+  position: absolute;
+  bottom: 0;
+}
+body {
+  height: 100%;
+  box-sizing: border-box;
+}
+ul {
+  list-style-type: none;
+}
+li {
+  padding: 10px;
 }
