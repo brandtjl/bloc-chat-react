@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import NewRoomForm from './NewRoomForm';
 class RoomList extends Component {
     constructor(props) {
         super(props);
@@ -7,7 +7,10 @@ class RoomList extends Component {
             rooms: []
         };
         this.roomsRef = this.props.firebase.database().ref('rooms');
+        this.newRoom = false;
+        this.showNewRoom = this.showNewRoom.bind(this);
     }
+    
 
     componentDidMount() {
         this.roomsRef.on('child_added', snapshot => {
@@ -17,22 +20,38 @@ class RoomList extends Component {
             this.setState({rooms: this.state.rooms.concat( room ) });
         })
     }
+
+    showNewRoom() {
+        this.setState( {newRoom: true });
+    }
+
+    createRoom() {
+        var newRoomName = document.getElementById('newRoom').value;
+        console.log('this executed');
+        this.roomsRef.push({
+            name: newRoomName,
+        });
+    }
     render () {
+        
         return (
-         <body>
+         <div>
             <div className = "room_list">
-            <h1>Bloc Chat</h1>
+            <h1 className="title-line">Bloc Chat</h1>
+            <button onClick={this.showNewRoom}>New Room</button>
             <ul>
                 {this.state.rooms.map( (room, index) =>
                 <li key = {index}>{room.name}</li>
                 )
-
                 }
-         
-           
           </ul> 
           </div>
-        </body>
+          <div>
+              { this.state.newRoom &&
+              <NewRoomForm createRoom={() => this.createRoom()} />  }
+            
+            </div>
+        </div>
         )
     }
 }

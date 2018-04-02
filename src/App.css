@@ -48,3 +48,17 @@ ul {
 li {
   padding: 10px;
 }
+.title-line {
+  display: inline-block;
+  padding-right: 10px;
+}
+
+#newform {
+  text-align: center;
+  background-color: rgb(167, 197, 236);
+  width: 25%;
+  position: right;
+  margin-left: 250px;
+  margin-top: 200px;
+  padding: 20px;
+}
