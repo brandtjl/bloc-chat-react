@@ -62,3 +62,20 @@ li {
   margin-top: 200px;
   padding: 20px;
 }
+
+.msgList {
+  width: 60%;
+  position: right;
+  text-align: right;
+  padding-left: 100px;
+}
+ .msgList h3 {
+   width: 60%;
+   text-align: center;
+   margin-left: 75px;
+ }
+ .messageList {
+   width: 60%;
+   text-align: center;
+   margin-left: 75px;
+ }

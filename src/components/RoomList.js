@@ -12,11 +12,10 @@ class RoomList extends Component {
     }
     
 
-    componentDidMount() {
+    componentDidMount() {  //part of React lifecyle
         this.roomsRef.on('child_added', snapshot => {
             const room = snapshot.val();
             room.key = snapshot.key;
-            console.log(room);
             this.setState({rooms: this.state.rooms.concat( room ) });
         })
     }
@@ -27,7 +26,6 @@ class RoomList extends Component {
 
     createRoom() {
         var newRoomName = document.getElementById('newRoom').value;
-        console.log('this executed');
         this.roomsRef.push({
             name: newRoomName,
         });
@@ -41,7 +39,7 @@ class RoomList extends Component {
             <button onClick={this.showNewRoom}>New Room</button>
             <ul>
                 {this.state.rooms.map( (room, index) =>
-                <li key = {index}>{room.name}</li>
+                <li key = {index} onClick={this.props.setActiveRoom}>{room.name}</li>
                 )
                 }
           </ul> 
