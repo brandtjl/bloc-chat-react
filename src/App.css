@@ -63,7 +63,7 @@ li {
   padding: 20px;
 }
 
-.msgList {
+.msgLists {
   width: 60%;
   position: right;
   text-align: right;
@@ -71,11 +71,16 @@ li {
 }
  .msgList h3 {
    width: 60%;
-   text-align: center;
-   margin-left: 75px;
+   text-align: left;
+   margin-left: 290px;
  }
  .messageList {
    width: 60%;
-   text-align: center;
-   margin-left: 75px;
+   text-align: left;
+   margin-left: 300px;
+ }
+
+ .msgTime {
+   margin-left: 600px;
+   position: absolute;
  }

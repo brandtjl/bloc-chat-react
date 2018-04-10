@@ -20,16 +20,18 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeRoom: 'Test'
-    }
+      activeRoom: {
+        key: '',
+        name: ' ',
+      }
+    };
     this.setActiveRoom = this.setActiveRoom.bind(this);
   }
 
-  setActiveRoom(e) {
-    console.log(e.target.value);
-    const roomInfo = e;
-    this.setState( {activeRoom: roomInfo} );
-    console.log(this.state.activeRoom);
+  setActiveRoom(room) {
+    console.log(room);
+    this.setState( {activeRoom: room} );
+    console.log(this.state);
   }
   render() {
     return (
