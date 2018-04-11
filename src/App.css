@@ -84,3 +84,11 @@ li {
    margin-left: 600px;
    position: absolute;
  }
+
+ 
+
+ .buttons {
+   position:relative;
+   text-align: center;
+   color: blue;
+ }

@@ -3,7 +3,7 @@ import './App.css';
 import * as firebase from 'firebase';
 import RoomList from './components/RoomList';
 import MessageList from './components/MessageList';
-
+import User from './components/User';
 // Initialize Firebase
 var config = {
   apiKey: "AIzaSyAsjcByo53hH2aoqkkFpdCnBUUhBoTrUBM",
@@ -20,12 +20,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeRoom: {
-        key: '',
-        name: ' ',
-      }
+      //do not need to set activeRoom if setting to blank, this.setState will declare and set later
     };
     this.setActiveRoom = this.setActiveRoom.bind(this);
+    this.setUser= this.setUser.bind(this);
   }
 
   setActiveRoom(room) {
@@ -33,11 +31,18 @@ class App extends Component {
     this.setState( {activeRoom: room} );
     console.log(this.state);
   }
+  
+  setUser(user){
+    this.setState( {user: user});
+  }
   render() {
     return (
       <div className="App">
         <RoomList firebase={firebase} setActiveRoom ={this.setActiveRoom}/> 
-          <MessageList firebase={firebase} activeRoom={this.state.activeRoom} />
+        {/* next line begins with curly brackets, in React this means 'following code will be javascript' */}
+        {this.state.activeRoom ? <MessageList firebase={firebase} activeRoom={this.state.activeRoom} user={this.state.user}/> : null}
+        <User firebase={firebase} setUser={this.setUser} user={this.state.user}/>
+        
       </div>
     );
   }
