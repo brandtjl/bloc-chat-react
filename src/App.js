@@ -27,9 +27,7 @@ class App extends Component {
   }
 
   setActiveRoom(room) {
-    console.log(room);
     this.setState( {activeRoom: room} );
-    console.log(this.state);
   }
   
   setUser(user){
@@ -39,9 +37,10 @@ class App extends Component {
     return (
       <div className="App">
         <RoomList firebase={firebase} setActiveRoom ={this.setActiveRoom}/> 
+        <User firebase={firebase} setUser={this.setUser} user={this.state.user}/>
         {/* next line begins with curly brackets, in React this means 'following code will be javascript' */}
         {this.state.activeRoom ? <MessageList firebase={firebase} activeRoom={this.state.activeRoom} user={this.state.user}/> : null}
-        <User firebase={firebase} setUser={this.setUser} user={this.state.user}/>
+        
         
       </div>
     );
