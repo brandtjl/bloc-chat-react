@@ -11,8 +11,8 @@ class NewRoomForm extends Component {
                         Enter a room name
                     </label>
                     <input type='text' id="newRoom"/>
-                    <input type='submit' value='Cancel' />
                     <input type='submit' value='Create Room' />
+                    <input type='submit' value='Cancel' />
                 </form>
             </div>
         );

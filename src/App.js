@@ -4,6 +4,8 @@ import * as firebase from 'firebase';
 import RoomList from './components/RoomList';
 import MessageList from './components/MessageList';
 import User from './components/User';
+import NewRoomForm from './components/NewRoomForm';
+
 // Initialize Firebase
 var config = {
   apiKey: "AIzaSyAsjcByo53hH2aoqkkFpdCnBUUhBoTrUBM",
@@ -24,6 +26,9 @@ class App extends Component {
     };
     this.setActiveRoom = this.setActiveRoom.bind(this);
     this.setUser= this.setUser.bind(this);
+    this.newRoom = false;
+    this.showNewRoom = this.showNewRoom.bind(this);
+    this.roomsRef = firebase.database().ref('rooms');
   }
 
   setActiveRoom(room) {
@@ -33,11 +38,23 @@ class App extends Component {
   setUser(user){
     this.setState( {user: user});
   }
+
+  showNewRoom() {
+    this.setState( {newRoom: true });
+}
+
+createRoom() {
+  var newRoomName = document.getElementById('newRoom').value;
+  this.roomsRef.push({
+      name: newRoomName,
+  });
+}
   render() {
     return (
       <div className="App">
-        <RoomList firebase={firebase} setActiveRoom ={this.setActiveRoom}/> 
+        <RoomList firebase={firebase} setActiveRoom ={this.setActiveRoom} showNewRoom={this.showNewRoom} newRoom={this.state.newRoom}/> 
         <User firebase={firebase} setUser={this.setUser} user={this.state.user}/>
+        {this.state.newRoom ? <NewRoomForm firebase={firebase} newRoom={this.state.newRoom} createRoom={() => this.createRoom()} /> : null}
         {/* next line begins with curly brackets, in React this means 'following code will be javascript' */}
         {this.state.activeRoom ? <MessageList firebase={firebase} activeRoom={this.state.activeRoom} user={this.state.user}/> : null}
         
